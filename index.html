@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOKSFARE — Premium Book Marketplace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#8B0000',
+        secondary: '#C41E3A',
+        bg: '#0A0A0A',
+        surface: '#1A1A1A',
+        text: '#E5E5E5',
+        muted: '#8A8A8A'
+      },
+      fontFamily: {
+        display: ['Archivo', 'sans-serif'],
+        body: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-up { animation: fadeUp 0.6s ease-out; }
+}
+.mono-code { font-family: 'Courier New', monospace; }
+</style>
+</head>
+<body class="bg-bg text-text font-body antialiased">
+
+<!-- Navigation -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-30 transition-all">
+  <div class="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+<a href="#" class="font-display text-xl tracking-tight text-text">BOOKSFARE</a>
+    <button id="m-menu-btn" class="md:hidden" aria-label="Toggle menu" aria-expanded="false">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+    <div id="m-menu" class="hidden md:flex md:items-center md:gap-6 absolute md:static top-16 left-0 right-0 flex-col md:flex-row bg-bg md:bg-transparent border-t md:border-0 border-surface p-4 md:p-0">
+<a href="#catalog" class="text-sm tracking-wide hover:text-primary transition-colors">CATALOG</a>
+      <a href="#comparison" class="text-sm tracking-wide hover:text-primary transition-colors">EDITIONS</a>
+      <a href="#curation" class="text-sm tracking-wide hover:text-primary transition-colors">CURATION</a>
+      <a href="#faq" class="text-sm tracking-wide hover:text-primary transition-colors">FAQ</a>
+      <a href="#contact" class="px-4 py-2 bg-primary text-white text-sm tracking-wide hover:-translate-y-0.5 hover:shadow-lg transition-all">BROWSE COLLECTION</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative h-[75vh] overflow-hidden">
+  <div class="absolute inset-0 flex">
+    <!-- Left side: diagonal split with numeral -->
+    <div class="relative w-full h-full" style="clip-path: polygon(0 0, 60% 0, 40% 100%, 0 100%);">
+      <div class="absolute inset-0 bg-[#1a1a1a] flex items-center justify-start pl-8 md:pl-16">
+        <span class="font-display text-white opacity-10 select-none" style="font-size: 240px; line-height: 1; letter-spacing: -0.05em;">01</span>
+      </div>
+    </div>
+    <!-- Right side: weapon silhouettes -->
+    <div class="absolute inset-0 flex items-center justify-end pr-8 md:pr-24" style="clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);">
+      <svg width="400" height="500" viewBox="0 0 400 500" class="hidden md:block">
+        <!-- Rifle silhouette -->
+        <g transform="translate(0, 120)">
+          <rect x="8" y="8" width="320" height="40" fill="#8B0000" opacity="0.3"/>
+          <rect x="0" y="0" width="320" height="40" fill="#E5E5E5"/>
+          <rect x="280" y="8" width="80" height="24" fill="#E5E5E5"/>
+          <circle cx="300" cy="20" r="8" fill="#1A1A1A"/>
+          <rect x="20" y="12" width="40" height="16" fill="#1A1A1A"/>
+        </g>
+        <!-- Pistol silhouette -->
+        <g transform="translate(40, 240)">
+          <rect x="8" y="8" width="160" height="32" fill="#8B0000" opacity="0.3"/>
+          <rect x="0" y="0" width="160" height="32" fill="#E5E5E5"/>
+          <rect x="120" y="6" width="40" height="20" fill="#E5E5E5"/>
+          <rect x="10" y="8" width="30" height="16" fill="#1A1A1A"/>
+        </g>
+        <!-- Blade silhouette -->
+        <g transform="translate(80, 340)">
+          <polygon points="8,8 208,8 218,28 8,28" fill="#8B0000" opacity="0.3"/>
+          <polygon points="0,0 200,0 210,20 0,20" fill="#E5E5E5"/>
+          <rect x="200" y="6" width="40" height="8" fill="#E5E5E5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  
+  <div class="relative z-10 h-full flex items-center">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 w-full">
+      <div class="max-w-2xl animate-fade-up">
+<p class="mono-code text-primary text-sm mb-4 tracking-widest">COLLECTION: FIRST EDITIONS</p>
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-white mb-6" style="letter-spacing: -0.03em; line-height: 0.95;">CURATED<br/>RARE<br/>BOOKS</h1>
+        <p class="text-muted text-base md:text-lg mb-8 max-w-xl">First editions. Signed copies. Out-of-print rarities. Authenticated provenance. Every volume hand-selected.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+<a href="#catalog" class="px-6 py-3 bg-primary text-white font-medium text-sm tracking-wide hover:-translate-y-1 hover:shadow-lg transition-all w-full sm:w-auto text-center">BROWSE CATALOG</a>
+          <a href="#comparison" class="px-6 py-3 border border-text text-text font-medium text-sm tracking-wide hover:bg-surface transition-all w-full sm:w-auto text-center">VIEW EDITIONS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Grid -->
+<section id="catalog" class="py-12 bg-surface">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="mb-8">
+      <p class="mono-code text-primary text-sm mb-2 tracking-widest flex items-center gap-3">SEC-01<span class="inline-block h-px w-[120px] bg-primary"></span></p>
+<h2 class="font-display text-4xl md:text-5xl text-white" style="letter-spacing: -0.025em;">COLLECTION HIGHLIGHTS</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+      <div class="bg-bg p-5 border-l-2 border-primary">
+<div class="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
+          <i data-lucide="book-open" class="w-6 h-6 text-primary stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">FIRST EDITIONS</h3>
+        <p class="text-muted text-sm leading-relaxed">Authenticated first printings with original dust jackets. Condition graded by certified bibliographers.</p>
+        <p class="mono-code text-xs text-primary mt-3">GRADE: FINE / VF+</p>
+      </div>
+      
+      <div class="bg-bg p-5 border-l-2 border-secondary">
+<div class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-4">
+          <i data-lucide="pen-tool" class="w-6 h-6 text-secondary stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">SIGNED COPIES</h3>
+        <p class="text-muted text-sm leading-relaxed">Author-signed editions with provenance documentation. Authenticated signatures with COA.</p>
+        <p class="mono-code text-xs text-secondary mt-3">AUTH: COA INCLUDED</p>
+      </div>
+      
+      <div class="bg-bg p-5 border-l-2 border-text">
+<div class="w-12 h-12 bg-text/10 flex items-center justify-center mb-4">
+          <i data-lucide="archive" class="w-6 h-6 text-text stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">OUT-OF-PRINT RARITIES</h3>
+        <p class="text-muted text-sm leading-relaxed">Discontinued titles sourced from estate sales and private collections. Catalogued by rarity index.</p>
+        <p class="mono-code text-xs text-text mt-3">CATALOG: 12K TITLES</p>
+      </div>
+      
+      <div class="bg-bg p-5 border-l-2 border-primary">
+<div class="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
+          <i data-lucide="shield" class="w-6 h-6 text-primary stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">PROVENANCE VERIFIED</h3>
+        <p class="text-muted text-sm leading-relaxed">Complete ownership history documented. Chain-of-custody records for high-value acquisitions.</p>
+        <p class="mono-code text-xs text-primary mt-3">DOC: FULL CHAIN</p>
+      </div>
+      
+      <div class="bg-bg p-5 border-l-2 border-secondary">
+<div class="w-12 h-12 bg-secondary/10 flex items-center justify-center mb-4">
+          <i data-lucide="package" class="w-6 h-6 text-secondary stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">ARCHIVAL PACKAGING</h3>
+        <p class="text-muted text-sm leading-relaxed">Acid-free sleeves and museum-grade storage boxes. Climate-controlled shipping.</p>
+        <p class="mono-code text-xs text-secondary mt-3">SHIP: 48HR</p>
+      </div>
+      
+      <div class="bg-bg p-5 border-l-2 border-text">
+<div class="w-12 h-12 bg-text/10 flex items-center justify-center mb-4">
+          <i data-lucide="search" class="w-6 h-6 text-text stroke-2"></i>
+        </div>
+        <h3 class="font-display text-xl text-white mb-2">EXPERT CURATION</h3>
+        <p class="text-muted text-sm leading-relaxed">Every acquisition vetted by bibliographers with 20+ years experience. Condition reports on request.</p>
+        <p class="mono-code text-xs text-text mt-3">EXP: 20+ YRS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Table -->
+<section id="comparison" class="py-12 bg-bg">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="mb-8">
+      <p class="mono-code text-primary text-sm mb-2 tracking-widest flex items-center gap-3">SEC-02<span class="inline-block h-px w-[120px] bg-primary"></span></p>
+<h2 class="font-display text-4xl md:text-5xl text-white" style="letter-spacing: -0.025em;">EDITION COMPARISON</h2>
+      <p class="text-muted mt-3 text-sm">Condition grades and pricing across formats</p>
+    </div>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b-2 border-primary">
+<th class="text-left py-3 px-4 font-display text-white tracking-wide">TITLE</th>
+            <th class="text-left py-3 px-4 font-display text-white tracking-wide">AUTHOR</th>
+            <th class="text-left py-3 px-4 font-display text-white tracking-wide">EDITION</th>
+            <th class="text-left py-3 px-4 font-display text-white tracking-wide">CONDITION</th>
+            <th class="text-left py-3 px-4 font-display text-white tracking-wide">YEAR</th>
+            <th class="text-left py-3 px-4 font-display text-white tracking-wide">PRICE</th>
+          </tr>
+        </thead>
+        <tbody class="mono-code">
+          <tr class="border-b border-surface hover:bg-surface/50 transition-colors">
+<td class="py-3 px-4 text-white font-semibold">THE GREAT GATSBY</td>
+            <td class="py-3 px-4 text-muted">F. Scott Fitzgerald</td>
+            <td class="py-3 px-4 text-muted">1st/1st</td>
+            <td class="py-3 px-4 text-muted">VG+</td>
+            <td class="py-3 px-4 text-muted">1925</td>
+            <td class="py-3 px-4 text-primary">$18,500</td>
+          </tr>
+          <tr class="border-b border-surface hover:bg-surface/50 transition-colors">
+<td class="py-3 px-4 text-white font-semibold">TO KILL A MOCKINGBIRD</td>
+            <td class="py-3 px-4 text-muted">Harper Lee</td>
+            <td class="py-3 px-4 text-muted">1st/1st Signed</td>
+            <td class="py-3 px-4 text-muted">Fine</td>
+            <td class="py-3 px-4 text-muted">1960</td>
+            <td class="py-3 px-4 text-primary">$22,000</td>
+          </tr>
+          <tr class="border-b border-surface hover:bg-surface/50 transition-colors">
+<td class="py-3 px-4 text-white font-semibold">1984</td>
+            <td class="py-3 px-4 text-muted">George Orwell</td>
+            <td class="py-3 px-4 text-muted">1st UK</td>
+            <td class="py-3 px-4 text-muted">VG</td>
+            <td class="py-3 px-4 text-muted">1949</td>
+            <td class="py-3 px-4 text-primary">$14,200</td>
+          </tr>
+          <tr class="border-b border-surface hover:bg-surface/50 transition-colors">
+<td class="py-3 px-4 text-white font-semibold">CATCHER IN THE RYE</td>
+            <td class="py-3 px-4 text-muted">J.D. Salinger</td>
+            <td class="py-3 px-4 text-muted">1st/1st</td>
+            <td class="py-3 px-4 text-muted">Fine</td>
+            <td class="py-3 px-4 text-muted">1951</td>
+            <td class="py-3 px-4 text-primary">$9,800</td>
+          </tr>
+          <tr class="hover:bg-surface/50 transition-colors">
+<td class="py-3 px-4 text-white font-semibold">THE HOBBIT</td>
+            <td class="py-3 px-4 text-muted">J.R.R. Tolkien</td>
+            <td class="py-3 px-4 text-muted">1st UK</td>
+            <td class="py-3 px-4 text-muted">VG+</td>
+            <td class="py-3 px-4 text-muted">1937</td>
+            <td class="py-3 px-4 text-primary">$32,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Band -->
+<section class="py-12 bg-surface border-t border-b border-primary/20">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="text-center">
+<div class="font-display text-5xl md:text-6xl text-primary mb-2" style="letter-spacing: -0.03em;">12K</div>
+        <div class="text-muted text-xs tracking-widest uppercase">RARE TITLES</div>
+      </div>
+      <div class="text-center">
+<div class="font-display text-5xl md:text-6xl text-white mb-2" style="letter-spacing: -0.03em;">850</div>
+        <div class="text-muted text-xs tracking-widest uppercase">SIGNED EDITIONS</div>
+      </div>
+      <div class="text-center">
+<div class="font-display text-5xl md:text-6xl text-white mb-2" style="letter-spacing: -0.03em;">1947</div>
+        <div class="text-muted text-xs tracking-widest uppercase">ESTABLISHED</div>
+      </div>
+      <div class="text-center">
+<div class="font-display text-5xl md:text-6xl text-primary mb-2" style="letter-spacing: -0.03em;">98%</div>
+        <div class="text-muted text-xs tracking-widest uppercase">SATISFACTION</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="curation" class="py-12 bg-bg">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="mb-8">
+      <p class="mono-code text-primary text-sm mb-2 tracking-widest flex items-center gap-3">SEC-03<span class="inline-block h-px w-[120px] bg-primary"></span></p>
+<h2 class="font-display text-4xl md:text-5xl text-white" style="letter-spacing: -0.025em;">ACQUISITION PROCESS</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+      <div class="bg-surface p-5 relative border-l-4 border-primary">
+        <div class="absolute top-5 right-5 font-display text-6xl text-white opacity-5">01</div>
+<div class="mono-code text-primary text-xs mb-3 tracking-widest">STEP 01</div>
+        <h3 class="font-display text-2xl text-white mb-3">TITLE DISCOVERY</h3>
+        <p class="text-muted text-sm leading-relaxed">Browse curated catalog by author, genre, or era. Filter by condition grade, edition type, and price range.</p>
+      </div>
+      
+      <div class="bg-surface p-5 relative border-l-4 border-secondary">
+        <div class="absolute top-5 right-5 font-display text-6xl text-white opacity-5">02</div>
+<div class="mono-code text-secondary text-xs mb-3 tracking-widest">STEP 02</div>
+        <h3 class="font-display text-2xl text-white mb-3">CONDITION ASSESSMENT</h3>
+        <p class="text-muted text-sm leading-relaxed">Detailed condition report with high-resolution photos. Provenance documentation and bibliographic notes provided.</p>
+      </div>
+      
+      <div class="bg-surface p-5 relative border-l-4 border-text">
+        <div class="absolute top-5 right-5 font-display text-6xl text-white opacity-5">03</div>
+<div class="mono-code text-text text-xs mb-3 tracking-widest">STEP 03</div>
+        <h3 class="font-display text-2xl text-white mb-3">AUTHENTICATION</h3>
+        <p class="text-muted text-sm leading-relaxed">Signature verification for signed copies. Edition points confirmed. Certificate of Authenticity issued.</p>
+      </div>
+      
+      <div class="bg-surface p-5 relative border-l-4 border-primary">
+        <div class="absolute top-5 right-5 font-display text-6xl text-white opacity-5">04</div>
+<div class="mono-code text-primary text-xs mb-3 tracking-widest">STEP 04</div>
+        <h3 class="font-display text-2xl text-white mb-3">ARCHIVAL DELIVERY</h3>
+        <p class="text-muted text-sm leading-relaxed">Museum-grade packaging with acid-free materials. Insured shipping. White-glove handling for high-value items.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-12 bg-surface">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="mb-8">
+      <p class="mono-code text-primary text-sm mb-2 tracking-widest flex items-center gap-3">SEC-04<span class="inline-block h-px w-[120px] bg-primary"></span></p>
+<h2 class="font-display text-4xl md:text-5xl text-white" style="letter-spacing: -0.025em;">COLLECTOR FAQ</h2>
+    </div>
+    
+    <div class="max-w-3xl">
+      <details class="group border-b border-bg py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">How do you grade book condition?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">We use industry-standard grading: Fine (minimal wear), Very Good (light shelf wear), Good (reading copy). Each listing includes detailed condition notes and high-resolution photos of dust jacket, binding, and interior.</div>
+      </details>
+      
+      <details class="group border-b border-bg py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">How do you authenticate signed copies?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">Signatures verified by certified bibliographers with reference exemplars. Provenance chain documented. Certificate of Authenticity issued for all signed editions. Third-party authentication available on request.</div>
+      </details>
+      
+      <details class="group border-b border-bg py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">What is your return policy?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">14-day return window for items not matching condition description. Full refund minus shipping. High-value items ($5K+) require pre-approval. Condition must match original listing — no reader wear accepted on returns.</div>
+      </details>
+      
+      <details class="group border-b border-bg py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">Do you offer appraisal services?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">Formal appraisals for insurance or estate purposes: $150 per title. Bulk collection appraisals quoted on request. We also purchase collections — contact us with inventory list for offer.</div>
+      </details>
+      
+      <details class="group border-b border-bg py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">How should I store rare books?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">Climate-controlled environment: 65-70°F, 30-50% humidity. Store upright on shelves, never stacked flat. Use acid-free sleeves for dust jackets. Avoid direct sunlight. Archival storage boxes recommended for high-value items.</div>
+      </details>
+      
+      <details class="group py-4">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-medium text-white">Do you ship internationally?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 transition-transform group-open:rotate-180 text-primary stroke-2"></i>
+        </summary>
+<div class="mt-3 text-muted text-sm leading-relaxed">Yes. International shipping via FedEx or DHL with full insurance. Customs declarations handled. Buyer responsible for import duties. High-value items require signature confirmation. Typical transit: 5-10 business days.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<section id="contact" class="py-12 bg-bg border-t-2 border-primary">
+  <div class="max-w-6xl mx-auto px-4 md:px-8 text-center">
+    <div class="mb-6">
+      <p class="mono-code text-primary text-sm mb-2 tracking-widest">SEC-05</p>
+<h2 class="font-display text-4xl md:text-6xl text-white mb-4" style="letter-spacing: -0.03em;">REQUEST CATALOG</h2>
+      <p class="text-muted text-base max-w-2xl mx-auto">Receive our quarterly catalog of new acquisitions, signed editions, and investment-grade rarities.</p>
+    </div>
+    
+    <form id="specs-form" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
+      <input type="email" required placeholder="email@example.com" class="flex-1 px-4 py-3 bg-surface border border-text/20 text-text placeholder:text-muted focus:outline-none focus:border-primary transition-colors"/>
+<button class="px-6 py-3 bg-primary text-white font-medium tracking-wide hover:-translate-y-1 hover:shadow-lg transition-all">SEND CATALOG</button>
+    </form>
+<p id="specs-msg" class="hidden mt-3 text-sm text-primary">Catalog sent. Check your inbox.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 bg-surface border-t border-bg">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div>
+<h3 class="font-display text-white text-sm mb-3 tracking-wide">CATEGORIES</h3>
+        <ul class="space-y-2 text-sm text-muted">
+          <li><a href="#" class="hover:text-primary transition-colors">First Editions</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Signed Copies</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Out-of-Print</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Modern Classics</a></li>
+        </ul>
+      </div>
+      <div>
+<h3 class="font-display text-white text-sm mb-3 tracking-wide">SERVICES</h3>
+        <ul class="space-y-2 text-sm text-muted">
+          <li><a href="#" class="hover:text-primary transition-colors">Appraisals</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Authentication</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Collection Sales</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Consignment</a></li>
+        </ul>
+      </div>
+      <div>
+<h3 class="font-display text-white text-sm mb-3 tracking-wide">RESOURCES</h3>
+        <ul class="space-y-2 text-sm text-muted">
+          <li><a href="#" class="hover:text-primary transition-colors">Grading Guide</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Storage Tips</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Market Reports</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Provenance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-display text-white text-sm mb-3 tracking-wide">COMPANY</h3>
+        <ul class="space-y-2 text-sm text-muted">
+          <li><a href="#" class="hover:text-primary transition-colors">About</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Careers</a></li>
+          <li><a href="https://example.com/legal" class="hover:text-primary transition-colors">Legal</a></li>
+          <li><a href="https://example.com/contact" class="hover:text-primary transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-bg pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-display text-xl text-white">BOOKSFARE</div>
+<div class="text-muted text-xs mono-code">© 2024 BOOKSFARE. ESTABLISHED 1947. ALL PRICES SUBJECT TO AVAILABILITY.</div>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+<script>
+// Mobile menu toggle
+(function(){
+  var btn=document.getElementById('m-menu-btn'),menu=document.getElementById('m-menu');
+  btn&&btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded',String(!open));
+  });
+})();
+
+// Sticky nav background
+(function(){
+  var n=document.getElementById('main-nav');
+  function upd(){
+    var s=window.scrollY>40;
+    n.classList.toggle('bg-bg/95',s);
+    n.classList.toggle('backdrop-blur',s);
+    n.classList.toggle('shadow-sm',s);
+  }
+  window.addEventListener('scroll',upd,{passive:true});upd();
+})();
+
+// Specs form submission
+(function(){
+  var f=document.getElementById('specs-form'),msg=document.getElementById('specs-msg');
+  f&&f.addEventListener('submit',function(e){
+    e.preventDefault();
+    msg.classList.remove('hidden');
+    f.reset();
+  });
+})();
+</script>
+<script>
+document.addEventListener('error', function(e) {
+  var el = e.target;
+  if (!el || el.tagName !== 'IMG' || el.dataset.imgFallback) return;
+  el.dataset.imgFallback = '1';
+  var seed = (el.alt || 'fallback').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'fallback';
+  var w = el.naturalWidth || el.width || parseInt(el.getAttribute('width'), 10) || 800;
+  var h = el.naturalHeight || el.height || parseInt(el.getAttribute('height'), 10) || 600;
+  el.src = 'https://picsum.photos/seed/' + encodeURIComponent(seed) + '/' + w + '/' + h;
+}, true);
+</script>
+
+
+
+
+
+
+<script data-toprompt-nav-shim>(function(){var s=["index"];var inFrame=(function(){try{return window.self!==window.top;}catch(_){return true;}})();function go(id){if(!id){window.scrollTo({top:0,behavior:'smooth'});return;}var t=null;try{t=document.getElementById(id);}catch(_){}if(t&&t.scrollIntoView){t.scrollIntoView({behavior:'smooth',block:'start'});}}document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a'):null;if(!a)return;var h=a.getAttribute('href')||'';if(!h)return;if(/^(https?:|mailto:|tel:)/.test(h)){e.preventDefault();window.open(h,'_blank','noopener');return;}if(h.charAt(0)==='#'){e.preventDefault();go(h.slice(1));return;}if(!inFrame){return;}var k=h.replace(/^\//,'').replace(/\.html$/,'')||'index';if(s.indexOf(k)!==-1){e.preventDefault();parent.postMessage({type:'landing-nav',to:k},'*');return;}e.preventDefault();go(k);},true);})();</script>
+</body>
+</html>
