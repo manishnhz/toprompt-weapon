@@ -473,10 +473,9 @@ document.addEventListener('error', function(e) {
   var el = e.target;
   if (!el || el.tagName !== 'IMG' || el.dataset.imgFallback) return;
   el.dataset.imgFallback = '1';
-  var seed = (el.alt || 'fallback').toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'fallback';
   var w = el.naturalWidth || el.width || parseInt(el.getAttribute('width'), 10) || 800;
   var h = el.naturalHeight || el.height || parseInt(el.getAttribute('height'), 10) || 600;
-  el.src = 'https://picsum.photos/seed/' + encodeURIComponent(seed) + '/' + w + '/' + h;
+  el.src = 'https://picsum.photos/seed/placeholder/' + w + '/' + h;
 }, true);
 </script>
 
